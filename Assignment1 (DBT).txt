@@ -1,0 +1,298 @@
+mysql> create database assignment1;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| assignment1        |
+| edac               |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> use assignment1;
+Database changed
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql>  create table member(member_id int(5), member_name varchar(30), member_address varchar(50), acc_open_date date, membership_type varchar(20), penalty_amount int(7));
+Query OK, 0 rows affected (0.29 sec)
+
+mysql> desc member;
++-----------------+-------------+------+-----+---------+-------+
+| Field           | Type        | Null | Key | Default | Extra |
++-----------------+-------------+------+-----+---------+-------+
+| member_id       | int(5)      | YES  |     | NULL    |       |
+| member_name     | varchar(30) | YES  |     | NULL    |       |
+| member_address  | varchar(50) | YES  |     | NULL    |       |
+| acc_open_date   | date        | YES  |     | NULL    |       |
+| membership_type | varchar(20) | YES  |     | NULL    |       |
+| penalty_amount  | int(7)      | YES  |     | NULL    |       |
++-----------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> create table books(book_no int(6), book_name varchar(30), author_name varchar(30), cost int(7), category char(10));
+Query OK, 0 rows affected (0.36 sec)
+
+mysql> desc books;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| book_no     | int(6)      | YES  |     | NULL    |       |
+| book_name   | varchar(30) | YES  |     | NULL    |       |
+| author_name | varchar(30) | YES  |     | NULL    |       |
+| cost        | int(7)      | YES  |     | NULL    |       |
+| category    | char(10)    | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table member add constraint primary key(member_id);
+Query OK, 0 rows affected (0.59 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc member;
++-----------------+-------------+------+-----+---------+-------+
+| Field           | Type        | Null | Key | Default | Extra |
++-----------------+-------------+------+-----+---------+-------+
+| member_id       | int(5)      | NO   | PRI | NULL    |       |
+| member_name     | varchar(30) | YES  |     | NULL    |       |
+| member_address  | varchar(50) | YES  |     | NULL    |       |
+| acc_open_date   | date        | YES  |     | NULL    |       |
+| membership_type | varchar(20) | YES  |     | NULL    |       |
+| penalty_amount  | int(7)      | YES  |     | NULL    |       |
++-----------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> alter table books add constraint primary key(book_no);
+Query OK, 0 rows affected (0.50 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc books;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| book_no     | int(6)      | NO   | PRI | NULL    |       |
+| book_name   | varchar(30) | YES  |     | NULL    |       |
+| author_name | varchar(30) | YES  |     | NULL    |       |
+| cost        | int(7)      | YES  |     | NULL    |       |
+| category    | char(10)    | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> create table issue(lib_issue_id int(10), book_no int(6), member_id int(5), issue_date date, return_date date);
+Query OK, 0 rows affected (0.31 sec)
+
+mysql> desc issue;
++--------------+---------+------+-----+---------+-------+
+| Field        | Type    | Null | Key | Default | Extra |
++--------------+---------+------+-----+---------+-------+
+| lib_issue_id | int(10) | YES  |     | NULL    |       |
+| book_no      | int(6)  | YES  |     | NULL    |       |
+| member_id    | int(5)  | YES  |     | NULL    |       |
+| issue_date   | date    | YES  |     | NULL    |       |
+| return_date  | date    | YES  |     | NULL    |       |
++--------------+---------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table issue add constraint primary key(lib_issue_id);
+Query OK, 0 rows affected (0.62 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc issue;
++--------------+---------+------+-----+---------+-------+
+| Field        | Type    | Null | Key | Default | Extra |
++--------------+---------+------+-----+---------+-------+
+| lib_issue_id | int(10) | NO   | PRI | NULL    |       |
+| book_no      | int(6)  | YES  |     | NULL    |       |
+| member_id    | int(5)  | YES  |     | NULL    |       |
+| issue_date   | date    | YES  |     | NULL    |       |
+| return_date  | date    | YES  |     | NULL    |       |
++--------------+---------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> insert into member values(1, 'Richa Sharma', 'Pune', '2005-12-10', 'Lifetime', null);
+Query OK, 1 row affected (0.08 sec)
+mysql> insert into member values(2, 'Garima Sen', 'Pune', '2020-12-05', 'Annual', null);
+Query OK, 1 row affected (0.04 sec)
+mysql> select * from member;
++-----------+--------------+----------------+---------------+-----------------+----------------+
+| member_id | member_name  | member_address | acc_open_date | membership_type | penalty_amount |
++-----------+--------------+----------------+---------------+-----------------+----------------+
+|         1 | Richa Sharma | Pune           | 2005-12-10    | Lifetime        |           NULL |
+|         2 | Garima Sen   | Pune           | 2020-12-05    | Annual          |           NULL |
++-----------+--------------+----------------+---------------+-----------------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> alter table member drop penalty_amount;
+Query OK, 0 rows affected (0.80 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+mysql> select * from member;
++-----------+--------------+----------------+---------------+-----------------+
+| member_id | member_name  | member_address | acc_open_date | membership_type |
++-----------+--------------+----------------+---------------+-----------------+
+|         1 | Richa Sharma | Pune           | 2005-12-10    | Lifetime        |
+|         2 | Garima Sen   | Pune           | 2020-12-05    | Annual          |
++-----------+--------------+----------------+---------------+-----------------+
+2 rows in set (0.00 sec)
+
+mysql> desc books;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| book_no     | int(6)      | NO   | PRI | NULL    |       |
+| book_name   | varchar(30) | YES  |     | NULL    |       |
+| author_name | varchar(30) | YES  |     | NULL    |       |
+| cost        | int(7)      | YES  |     | NULL    |       |
+| category    | char(10)    | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> insert into books values(101, 'Let us C', 'Denis Ritchie', 450, 'System');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from books;
++---------+-----------+---------------+------+----------+
+| book_no | book_name | author_name   | cost | category |
++---------+-----------+---------------+------+----------+
+|     101 | Let us C  | Denis Ritchie |  450 | System   |
++---------+-----------+---------------+------+----------+
+1 row in set (0.00 sec)
+
+mysql> insert into books values(102, 'Oracle-Complete ref', 'Loni', 550, 'Database'), (103, 'Mastering SQL', 'Loni', 250, 'Database'), (104, 'PL SQL-Ref', 'ScottUrman', 750, 'Database');
+Query OK, 3 rows affected (0.06 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from books;
++---------+---------------------+---------------+------+----------+
+| book_no | book_name           | author_name   | cost | category |
++---------+---------------------+---------------+------+----------+
+|     101 | Let us C            | Denis Ritchie |  450 | System   |
+|     102 | Oracle-Complete ref | Loni          |  550 | Database |
+|     103 | Mastering SQL       | Loni          |  250 | Database |
+|     104 | PL SQL-Ref          | ScottUrman    |  750 | Database |
++---------+---------------------+---------------+------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from member;
++-----------+--------------+----------------+---------------+-----------------+
+| member_id | member_name  | member_address | acc_open_date | membership_type |
++-----------+--------------+----------------+---------------+-----------------+
+|         1 | Richa Sharma | Pune           | 2005-12-10    | Lifetime        |
+|         2 | Garima Sen   | Pune           | 2020-12-05    | Annual          |
++-----------+--------------+----------------+---------------+-----------------+
+2 rows in set (0.00 sec)
+
+mysql> update books
+    -> set cost=300
+    -> where book_no=103;
+Query OK, 1 row affected (0.13 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from books;
++---------+---------------------+---------------+------+----------+
+| book_no | book_name           | author_name   | cost | category |
++---------+---------------------+---------------+------+----------+
+|     101 | Let us C            | Denis Ritchie |  450 | System   |
+|     102 | Oracle-Complete ref | Loni          |  550 | Database |
+|     103 | Mastering SQL       | Loni          |  300 | Database |
+|     104 | PL SQL-Ref          | ScottUrman    |  750 | Database |
++---------+---------------------+---------------+------+----------+
+4 rows in set (0.00 sec)
+
+mysql> update books
+    -> set category='RDBMS'
+    -> where book_no=103;
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from books;
++---------+---------------------+---------------+------+----------+
+| book_no | book_name           | author_name   | cost | category |
++---------+---------------------+---------------+------+----------+
+|     101 | Let us C            | Denis Ritchie |  450 | System   |
+|     102 | Oracle-Complete ref | Loni          |  550 | Database |
+|     103 | Mastering SQL       | Loni          |  300 | RDBMS    |
+|     104 | PL SQL-Ref          | ScottUrman    |  750 | Database |
++---------+---------------------+---------------+------+----------+
+4 rows in set (0.00 sec)
+
+mysql> show tables;
++-----------------------+
+| Tables_in_assignment1 |
++-----------------------+
+| books                 |
+| issue                 |
+| member                |
++-----------------------+
+3 rows in set (0.00 sec)
+
+mysql> drop table issue;
+Query OK, 0 rows affected (0.19 sec)
+mysql> show tables;
++-----------------------+
+| Tables_in_assignment1 |
++-----------------------+
+| books                 |
+| member                |
++-----------------------+
+2 rows in set (0.00 sec)
+
+mysql> create table issue(lib_issue_id int(10), book_no int(6), member_id int(5), issue_date date, return_date date);
+Query OK, 0 rows affected (0.47 sec)
+
+mysql> show tables;
++-----------------------+
+| Tables_in_assignment1 |
++-----------------------+
+| books                 |
+| issue                 |
+| member                |
++-----------------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into issue(lib_issue_id, book_no, member_id, issue_date) values(7001, 101, 1, '2006-12-10');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from issue;
++--------------+---------+-----------+------------+-------------+
+| lib_issue_id | book_no | member_id | issue_date | return_date |
++--------------+---------+-----------+------------+-------------+
+|         7001 |     101 |         1 | 2006-12-10 | NULL        |
++--------------+---------+-----------+------------+-------------+
+1 row in set (0.00 sec)
+mysql> insert into issue(lib_issue_id, book_no, member_id, issue_date) values(7002, 102, 2, '2006-12-25');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from issue;
++--------------+---------+-----------+------------+-------------+
+| lib_issue_id | book_no | member_id | issue_date | return_date |
++--------------+---------+-----------+------------+-------------+
+|         7001 |     101 |         1 | 2006-12-10 | NULL        |
+|         7002 |     102 |         2 | 2006-12-25 | NULL        |
++--------------+---------+-----------+------------+-------------+
+2 rows in set (0.00 sec)
+mysql> insert into issue(lib_issue_id, book_no, member_id, issue_date) values(7003, 104, 1, '2006-01-15'), (7004, 101, 1, '2006-07-04'),(7005, 104, 2, '2006-11-15'), (7006, 101, 3, '2006-02-18');
+Query OK, 4 rows affected (0.06 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from issue;
++--------------+---------+-----------+------------+-------------+
+| lib_issue_id | book_no | member_id | issue_date | return_date |
++--------------+---------+-----------+------------+-------------+
+|         7001 |     101 |         1 | 2006-12-10 | NULL        |
+|         7002 |     102 |         2 | 2006-12-25 | NULL        |
+|         7003 |     104 |         1 | 2006-01-15 | NULL        |
+|         7004 |     101 |         1 | 2006-07-04 | NULL        |
+|         7005 |     104 |         2 | 2006-11-15 | NULL        |
+|         7006 |     101 |         3 | 2006-02-18 | NULL        |
++--------------+---------+-----------+------------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
