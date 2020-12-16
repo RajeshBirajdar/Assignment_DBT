@@ -1,0 +1,224 @@
+ mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| edac               |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> use edac;
+Database changed
+ 
+mysql> create table publishers(pname varchar(20), phone numeric(10), email varchar(30));
+
+mysql> desc publishers;
++-------+---------------+------+-----+---------+-------+
+| Field | Type          | Null | Key | Default | Extra |
++-------+---------------+------+-----+---------+-------+
+| pname | varchar(20)   | YES  |     | NULL    |       |
+| phone | decimal(10,0) | YES  |     | NULL    |       |
+| email | varchar(30)   | YES  |     | NULL    |       |
++-------+---------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into publishers values('Rajesh', 9011281844, 'birajdarrajesh941@gmail.com'),('Rahul', 1234567891, 'rahul123@gmail.com');
+
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select *from publishers;
++--------+------------+-----------------------------+
+| pname  | phone      | email                       |
++--------+------------+-----------------------------+
+| Rajesh | 9011281844 | birajdarrajesh941@gmail.com |
+| Rahul  | 1234567891 | rahul123@gmail.com          |
++--------+------------+-----------------------------+
+2 rows in set (0.00 sec)
+mysql> insert into publishers values('Ganesh', 1234567892, 'ganesh123@gmail.com'
+);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select *from publishers;
++--------+------------+-----------------------------+
+| pname  | phone      | email                       |
++--------+------------+-----------------------------+
+| Rajesh | 9011281844 | birajdarrajesh941@gmail.com |
+| Rahul  | 1234567891 | rahul123@gmail.com          |
+| Ganesh | 1234567892 | ganesh123@gmail.com         |
++--------+------------+-----------------------------+
+3 rows in set (0.00 sec)
+
+mysql> create table authors(aname varchar(20), phone numeric(10));
+Query OK, 0 rows affected (0.34 sec)
+
+mysql> desc authors;
++-------+---------------+------+-----+---------+-------+
+| Field | Type          | Null | Key | Default | Extra |
++-------+---------------+------+-----+---------+-------+
+| aname | varchar(20)   | YES  |     | NULL    |       |
+| phone | decimal(10,0) | YES  |     | NULL    |       |
++-------+---------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_edac |
++----------------+
+| authors        |
+| publishers     |
++----------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into authors values('Kishor', 2585858585),('pavan', 8888888888);
+Query OK, 2 rows affected (0.30 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select *from authors;
++--------+------------+
+| aname  | phone      |
++--------+------------+
+| Kishor | 2585858585 |
+| pavan  | 8888888888 |
++--------+------------+
+2 rows in set (0.00 sec)
+
+mysql> create table titles(titleid varchar(20), title varchar(20), publishdate d
+ate);
+Query OK, 0 rows affected (0.60 sec)
+
+mysql> desc titles;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| titleid     | varchar(20) | YES  |     | NULL    |       |
+| title       | varchar(20) | YES  |     | NULL    |       |
+| publishdate | date        | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select *from titles;
+Empty set (0.00 sec)
+
+mysql> alter table titles drop titleid;
+Query OK, 0 rows affected (0.74 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select *from titles;
+Empty set (0.00 sec)
+
+mysql> desc titles;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| title       | varchar(20) | YES  |     | NULL    |       |
+| publishdate | date        | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> alter table titles add titleid numeric(10);
+Query OK, 0 rows affected (0.72 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc titles;
++-------------+---------------+------+-----+---------+-------+
+| Field       | Type          | Null | Key | Default | Extra |
++-------------+---------------+------+-----+---------+-------+
+| title       | varchar(20)   | YES  |     | NULL    |       |
+| publishdate | date          | YES  |     | NULL    |       |
+| titleid     | decimal(10,0) | YES  |     | NULL    |       |
++-------------+---------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table titles drop titleid;
+Query OK, 0 rows affected (1.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc titles;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| title       | varchar(20) | YES  |     | NULL    |       |
+| publishdate | date        | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> alter table titles add titleid int;
+Query OK, 0 rows affected (0.79 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql>
+mysql> desc titles;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| title       | varchar(20) | YES  |     | NULL    |       |
+| publishdate | date        | YES  |     | NULL    |       |
+| titleid     | int(11)     | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> create table titleauthors(auid int, titleid int, importance varchar(30));
+
+Query OK, 0 rows affected (0.29 sec)
+
+mysql> desc titles;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| title       | varchar(20) | YES  |     | NULL    |       |
+| publishdate | date        | YES  |     | NULL    |       |
+| titleid     | int(11)     | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select *from titleauthors;
+Empty set (0.00 sec)
+
+mysql> desc titleauthors;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| auid       | int(11)     | YES  |     | NULL    |       |
+| titleid    | int(11)     | YES  |     | NULL    |       |
+| importance | varchar(30) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into titles values('DATASTRUCTURE', '2020-02-20', 111),('SCIENCE',
+ '2019-05-12', 222);
+Query OK, 2 rows affected (0.09 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert into titles values('DATASTRUCTURE', '2020-02-20', 111),('SCIENCE',
+ '2019-05-12', 222);
+Query OK, 2 rows affected (0.09 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select *from titles;
++---------------+-------------+---------+
+| title         | publishdate | titleid |
++---------------+-------------+---------+
+| DATASTRUCTURE | 2020-02-20  |     111 |
+| SCIENCE       | 2019-05-12  |     222 |
++---------------+-------------+---------+
+2 rows in set (0.00 sec)
+
+mysql> insert into titleauthors values(10, 20, 'Good for java'),(11, 21, 'Good f
+or DBT');
+Query OK, 2 rows affected (0.08 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select *from titleauthors;
++------+---------+---------------+
+| auid | titleid | importance    |
++------+---------+---------------+
+|   10 |      20 | Good for java |
+|   11 |      21 | Good for DBT  |
++------+---------+---------------+
+2 rows in set (0.00 sec)
+
